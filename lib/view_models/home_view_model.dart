@@ -98,6 +98,10 @@ class HomeViewModel extends GetxController {
     Get.toNamed(AppRoutes.collections);
   }
 
+  void onCategoryTap(String categoryName) {
+    Get.toNamed(AppRoutes.collections, arguments: categoryName);
+  }
+
   void onGenerateDesign() {
     Get.toNamed(AppRoutes.createDesign);
   }

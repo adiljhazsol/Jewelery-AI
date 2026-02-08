@@ -257,33 +257,36 @@ class HomeView extends GetView<HomeViewModel> {
                   itemCount: controller.categories.length,
                   itemBuilder: (context, index) {
                     final category = controller.categories[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 70,
-                            height: 70,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.grey.withOpacity(0.2)),
-                              image: DecorationImage(
-                                image: AssetImage(category['image']!),
-                                fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: () => controller.onCategoryTap(category['name']!),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 70,
+                              height: 70,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.grey.withOpacity(0.2)),
+                                image: DecorationImage(
+                                  image: AssetImage(category['image']!),
+                                  fit: BoxFit.cover,
+                                ),
+                                color: Colors.grey[200], // Fallback color
                               ),
-                              color: Colors.grey[200], // Fallback color
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            category['name']!,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF1A1A1A),
+                            const SizedBox(height: 8),
+                            Text(
+                              category['name']!,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF1A1A1A),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },

@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jewelry_ai/routes/app_routes.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductDetailsViewModel extends GetxController {
   final RxMap<String, dynamic> product = <String, dynamic>{}.obs;
@@ -63,7 +66,98 @@ class ProductDetailsViewModel extends GetxController {
   }
 
   void onShare() {
-    print('Share clicked');
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Share via',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1A1A1A),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildShareOption(
+                  icon: FontAwesomeIcons.whatsapp,
+                  label: 'WhatsApp',
+                  color: const Color(0xFF25D366),
+                  onTap: () => _shareText('Check out this amazing jewelry: ${product['name']} - ${product['price']}'),
+                ),
+                _buildShareOption(
+                  icon: FontAwesomeIcons.instagram,
+                  label: 'Instagram',
+                  color: const Color(0xFFE4405F),
+                  onTap: () => _shareText('Check out this amazing jewelry: ${product['name']} - ${product['price']}'),
+                ),
+                _buildShareOption(
+                  icon: FontAwesomeIcons.facebookMessenger,
+                  label: 'Messenger',
+                  color: const Color(0xFF0084FF),
+                  onTap: () => _shareText('Check out this amazing jewelry: ${product['name']} - ${product['price']}'),
+                ),
+                _buildShareOption(
+                  icon: Icons.more_horiz,
+                  label: 'More',
+                  color: Colors.grey,
+                  onTap: () => _shareText('Check out this amazing jewelry: ${product['name']} - ${product['price']}'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.transparent,
+    );
+  }
+
+  void _shareText(String text) {
+    Get.back(); // Close the bottom sheet
+    Share.share(text);
+  }
+
+  Widget _buildShareOption({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, color: color, size: 24),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Color(0xFF1A1A1A),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void onChat() {

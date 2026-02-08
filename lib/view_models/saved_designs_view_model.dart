@@ -34,6 +34,19 @@ class SavedDesignsViewModel extends GetxController {
     Get.snackbar('Get Quote', 'Requesting quote for ${savedDesigns[index]['title']}');
   }
 
+  void onDesignTap(int index) {
+    final design = savedDesigns[index];
+    Get.toNamed(
+      '/product-details', // AppRoutes.productDetails
+      arguments: {
+        'name': design['title'],
+        'image': design['image'],
+        // Pass dummy price/rating if needed, or let ProductDetailsViewModel use defaults
+        'price': '\$Price Pending', 
+      },
+    );
+  }
+
   void goBack() {
     Get.back();
   }

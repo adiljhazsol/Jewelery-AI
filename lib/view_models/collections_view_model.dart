@@ -29,6 +29,15 @@ class CollectionsViewModel extends GetxController {
     searchController.addListener(() {
       searchQuery.value = searchController.text;
     });
+
+    // Handle navigation arguments for category selection
+    if (Get.arguments != null && Get.arguments is String) {
+      final categoryName = Get.arguments as String;
+      final index = categories.indexOf(categoryName);
+      if (index != -1) {
+        _selectedCategoryIndex.value = index;
+      }
+    }
   }
 
   @override
