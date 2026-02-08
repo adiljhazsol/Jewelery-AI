@@ -1,0 +1,33 @@
+abstract class AppRoutes {
+  static const splash = '/';
+  static const login = '/login';
+  static const signup = '/signup';
+  static const forgotPassword = '/forgot-password';
+  static const home = '/home';
+  static const collections = '/collections';
+  static const productDetails = '/product-details';
+  static const profile = '/profile';
+  static const aiDesignResult = '/ai-design-result';
+  static const logout = '/logout';
+  static const orderHistory = '/order-history';
+  static const sendQuotation = '/send-quotation';
+  static const myQuotations = '/my-quotations';
+  static const requestQuotation = '/request-quotation';
+  static const savedDesigns = '/saved-designs';
+  static const adminLogin = '/admin-login';
+  static const adminDashboard = '/admin-dashboard';
+  static const userManagement = '/user-management';
+  static const addProduct = '/add-product';
+  static const chat = '/chat';
+  static const chatDetail = '/chat-detail';
+  static const adminProductList = '/admin-product-list';
+  static const adminSettings = '/admin-settings';
+  static const createDesign = '/create-design';
+  static const supportChat = '/support-chat';
+  static const designRequests = '/design-requests';
+  static const notifications = '/notifications';
+  static const personalInformation = '/personal-information';
+  static const appSettings = '/app-settings';
+  static const notificationSettings = '/notification-settings';
+  static const helpSupport = '/help-support';
+}
